@@ -1,10 +1,14 @@
 // app/page.tsx
-import {Button} from '@heroui/button';
+import SingButton from "@/component/sing-button";
+import UserAvatar from "@/component/UserAvatar";
+import SignoutButton from "@/component/signout-button";
 
 export default function Page() {
     return (
         <div>
-            <Button>Click me</Button>
+            <SingButton />
+            <UserAvatar></UserAvatar>
+            <SignoutButton></SignoutButton>
         </div>
     )
 }
