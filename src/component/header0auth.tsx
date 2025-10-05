@@ -1,13 +1,15 @@
 "use client"
 import React from 'react';
 import { useSession } from "next-auth/react"
-import {Avatar, Button, NavbarItem, Popover, PopoverContent, PopoverTrigger} from "@heroui/react";
+import {Avatar, Button, NavbarItem, Popover, PopoverContent, PopoverTrigger, Spinner} from "@heroui/react";
 import * as action from "@/action";
 
 const Header0Auth = ():React.ReactNode => {
-    const { data: session } = useSession()
+    const { data: session, status } = useSession()
     let authContent: React.ReactNode = null
-    if (session?.user) {
+    if (status === 'loading') {
+        authContent =  <Spinner color="secondary" />
+    } else if (session?.user) {
         authContent =
             <Popover placement="bottom">
                 <PopoverTrigger>
