@@ -1,14 +1,11 @@
-// app/page.tsx
-import SingButton from "@/component/sing-button";
-import UserAvatar from "@/component/UserAvatar";
-import SignoutButton from "@/component/signout-button";
+import React from 'react';
 
-export default function Page() {
+const Page = () => {
     return (
         <div>
-            <SingButton />
-            <UserAvatar></UserAvatar>
-            <SignoutButton></SignoutButton>
+          Hello
         </div>
-    )
-}
+    );
+};
+
+export default Page;

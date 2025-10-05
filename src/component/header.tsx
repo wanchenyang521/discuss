@@ -1,10 +1,8 @@
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Avatar} from "@heroui/react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem} from "@heroui/react";
 
 import React from 'react';
 import {Input} from "@heroui/input";
-import {auth, signOut} from "@/auth";
-
-
+import Header0Auth from "@/component/header0auth";
 export const AcmeLogo = () => {
     return (
         <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
@@ -17,19 +15,7 @@ export const AcmeLogo = () => {
         </svg>
     );
 };
-
 const Header = async () => {
-    const session = await auth()
-    let authContent: React.ReactNode = null
-    if (session?.user) {
-        authContent =   <Avatar src={session.user.image || ''}/>
-    } else {
-        authContent = <NavbarItem className="flex gap-4">
-            <Button color="secondary"  variant="bordered">Sign in</Button>
-            <Button color="secondary" >Sign Up</Button>
-        </NavbarItem>
-    }
-
     return (
         <Navbar>
             <NavbarBrand>
@@ -43,7 +29,7 @@ const Header = async () => {
 
             </NavbarContent>
             <NavbarContent justify="end">
-                {authContent}
+                <Header0Auth></Header0Auth>
             </NavbarContent>
         </Navbar>
     );
