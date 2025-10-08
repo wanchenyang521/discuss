@@ -1,0 +1,35 @@
+-- CreateTable
+CREATE TABLE "Topic" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "name" TEXT NOT NULL,
+    "desc" TEXT NOT NULL,
+    "createAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updateAt" DATETIME NOT NULL,
+    "userId" TEXT NOT NULL,
+    CONSTRAINT "Topic_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Post" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "title" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "createAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updateAt" DATETIME NOT NULL,
+    "userId" TEXT NOT NULL,
+    "topicId" TEXT,
+    CONSTRAINT "Post_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "Post_topicId_fkey" FOREIGN KEY ("topicId") REFERENCES "Topic" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Comment" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "content" TEXT NOT NULL,
+    "createAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updateAt" DATETIME NOT NULL,
+    "userId" TEXT NOT NULL,
+    "postId" TEXT,
+    CONSTRAINT "Comment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "Comment_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+);
