@@ -85,7 +85,7 @@ model Authenticator {
 
 model Topic {
   id       String   @id @default(cuid())
-  name     String
+  name     String   @unique
   desc     String
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
